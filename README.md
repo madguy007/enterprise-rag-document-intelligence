@@ -5,6 +5,10 @@ An end-to-end **Retrieval-Augmented Generation (RAG)** application that allows u
 The system uses **Google Gemini LLM**, **semantic vector search with FAISS**, and **document chunking** to retrieve relevant context and generate accurate answers.
 
 ---
+## Application Interface
+
+![RAG Application UI](assets/app_ui.jpg)
+---
 
 ## Demo Features
 
