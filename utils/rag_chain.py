@@ -7,7 +7,19 @@ from utils.vector_store import load_vector_store
 # Load environment variables
 load_dotenv()
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+def get_google_api_key():
+    api_key = os.getenv("GOOGLE_API_KEY")
+
+    if api_key:
+        return api_key
+
+    try:
+        import streamlit as st
+
+        return st.secrets.get("GOOGLE_API_KEY")
+    except Exception:
+        return None
 
 
 def ask_question(question):
@@ -27,9 +39,15 @@ def ask_question(question):
     # Combine retrieved documents into context
     context = "\n\n".join([doc.page_content for doc in docs])
 
+    google_api_key = get_google_api_key()
+
+    if not google_api_key:
+        return "GOOGLE_API_KEY is missing. Add it in Streamlit Cloud app secrets and reboot the app."
+
     model = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
-        temperature=0.3
+        temperature=0.3,
+        google_api_key=google_api_key
     )
 
     prompt = f"""
@@ -45,6 +63,13 @@ Question:
 Answer:
 """
 
-    response = model.invoke(prompt)
+    try:
+        response = model.invoke(prompt)
+    except Exception as exc:
+        return (
+            "Gemini could not generate an answer. Please check that your Streamlit "
+            "secret contains a valid Gemini API key from Google AI Studio, then "
+            f"reboot the app. Error type: {type(exc).__name__}"
+        )
 
     return response.content
