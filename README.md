@@ -4,6 +4,8 @@ An end-to-end **Retrieval-Augmented Generation (RAG)** application that allows u
 
 The system uses **Google Gemini LLM**, **semantic vector search with FAISS**, and **document chunking** to retrieve relevant context and generate accurate answers.
 
+**Live App:** [enterprise-rag-document-intelligence](https://enterprise-rag-document-intelligence-y4jnb5q5ymzrkqpdnpbs4v.streamlit.app/)
+
 ---
 ## Application Interface
 
