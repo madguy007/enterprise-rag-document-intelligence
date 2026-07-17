@@ -12,6 +12,8 @@ from utils.rag_chain import ask_question
 # -----------------------------
 st.set_page_config(page_title="Enterprise RAG System")
 
+os.makedirs("data", exist_ok=True)
+
 st.title("💬 Chat with Your PDFs (Gemini + RAG)")
 
 

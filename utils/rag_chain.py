@@ -12,7 +12,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 def ask_question(question):
 
-    if not os.path.exists("faiss_index"):
+    if not os.path.exists(os.path.join("faiss_index", "index.faiss")):
         return "Please upload and process PDFs first."
 
     """
