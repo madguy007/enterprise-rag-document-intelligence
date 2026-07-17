@@ -28,7 +28,7 @@ def ask_question(question):
         return "GOOGLE_API_KEY is missing. Add it in Streamlit Cloud app secrets and reboot the app."
 
     model = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model="gemini-3.5-flash",
         temperature=0.3,
         google_api_key=google_api_key
     )
